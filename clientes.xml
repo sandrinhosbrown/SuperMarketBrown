@@ -5,19 +5,19 @@
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
-      <string>L. Jackson</string>
+      <string>Martínez Soria</string>
      </void>
      <void property="direccion">
-      <string>c/ La Fama, 124</string>
+      <string>c/ Almacen, nº 2</string>
      </void>
      <void property="nif">
       <string>12345678A</string>
      </void>
      <void property="nombre">
-      <string>Samuel</string>
+      <string>Alberto</string>
      </void>
      <void property="poblacion">
-      <string>Barcelona</string>
+      <string>El Prat del Llobregat</string>
      </void>
     </object>
    </void>

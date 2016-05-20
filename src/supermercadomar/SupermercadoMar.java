@@ -3,7 +3,6 @@
  */
 package supermercadomar;
 
-import java.awt.Menu;
 import modelo.ListaClientes;
 import modelo.ListaFacturas;
 import modelo.ListaProductos;

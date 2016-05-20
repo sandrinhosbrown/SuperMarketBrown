@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.8.0_74" class="java.beans.XMLDecoder">
+ <object class="modelo.ListaProductos" id="ListaProductos0">
+  <void property="lista">
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>1</int>
+     </void>
+     <void property="descripcion">
+      <string>Lata de Coca Cola</string>
+     </void>
+     <void property="pvp">
+      <double>0.33</double>
+     </void>
+     <void property="stock">
+      <int>10</int>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>
