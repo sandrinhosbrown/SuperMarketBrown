@@ -28,6 +28,11 @@ public class Cliente implements Serializable {
         poblacion = "";
     }
 
+    @Override
+    public String toString() {
+        return apellidos + ", " + nombre;
+    }
+
     public Cliente(String nif, String nombre, String apellidos, String direccion, String poblacion) {
         this.nif = nif;
         this.nombre = nombre;

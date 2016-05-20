@@ -26,7 +26,36 @@ public class Factura implements Serializable {
         cliente = new Cliente();
         producto = new Producto();
     }
+    
+    // Método que devuelve el importe total de la fra
+    public double total() {
+        return cantidad * producto.getPvp();
+    }
 
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + this.numero;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Factura other = (Factura) obj;
+        return this.numero == other.numero;
+    }
+
+    
+    
     public Factura(int numero, Date fecha, Cliente cliente, Producto producto, int cantidad) {
         this.numero = numero;
         this.fecha = fecha;

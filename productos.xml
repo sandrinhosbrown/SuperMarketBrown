@@ -18,6 +18,35 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>2</int>
+     </void>
+     <void property="descripcion">
+      <string>Galletas de chocolate</string>
+     </void>
+     <void property="pvp">
+      <double>0.75</double>
+     </void>
+     <void property="stock">
+      <int>3</int>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>3</int>
+     </void>
+     <void property="descripcion">
+      <string>Yogures de limón</string>
+     </void>
+     <void property="pvp">
+      <double>1.15</double>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

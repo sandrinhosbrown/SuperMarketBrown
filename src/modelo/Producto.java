@@ -22,6 +22,11 @@ public class Producto implements Serializable {
         descripcion = "";
     }
 
+    @Override
+    public String toString() {
+        return descripcion + " - " + pvp+ " €";
+    }
+
     public Producto(int codigo, String descripcion, double pvp, int stock) {
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -50,7 +55,7 @@ public class Producto implements Serializable {
         final Producto other = (Producto) obj;
         return this.codigo == other.codigo;
     }
-    
+
     public static final String PROP_STOCK = "stock";
 
     public int getStock() {

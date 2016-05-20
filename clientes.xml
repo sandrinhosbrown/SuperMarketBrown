@@ -21,6 +21,44 @@
      </void>
     </object>
    </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>Marquez Fernandez</string>
+     </void>
+     <void property="direccion">
+      <string>c/ Atomo, nº 2</string>
+     </void>
+     <void property="nif">
+      <string>88888888P</string>
+     </void>
+     <void property="nombre">
+      <string>Manuel</string>
+     </void>
+     <void property="poblacion">
+      <string>Castelldefels</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>Barcelona Sevilla</string>
+     </void>
+     <void property="direccion">
+      <string>c/ La copa, nº 3</string>
+     </void>
+     <void property="nif">
+      <string>87635426T</string>
+     </void>
+     <void property="nombre">
+      <string>Marta</string>
+     </void>
+     <void property="poblacion">
+      <string>Gavá</string>
+     </void>
+    </object>
+   </void>
   </void>
  </object>
 </java>

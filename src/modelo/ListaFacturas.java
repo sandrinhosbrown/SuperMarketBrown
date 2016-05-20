@@ -22,6 +22,14 @@ public class ListaFacturas implements Serializable {
         lista = ObservableCollections.observableList(new ArrayList<Factura>());
     }
 
+    public boolean existeFactura(Factura fra) {
+        return lista.contains(fra);
+    }
+    
+    public void altaFactura(Factura fra) {
+        lista.add(fra);
+    }
+    
     public static final String PROP_LISTA = "lista";
 
     public ObservableList<Factura> getLista() {
