@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author mfontana
  */
-public class Producto implements Serializable {
+public class Producto implements Serializable, Comparable {
 
     private int codigo;
     private String descripcion;
@@ -24,7 +24,11 @@ public class Producto implements Serializable {
 
     @Override
     public String toString() {
-        return descripcion + " - " + pvp+ " €";
+        if(descripcion.equals("-- Escoge un producto --")){
+            return descripcion;
+        } else{
+        return descripcion + " - " + pvp + " €";
+        }
     }
 
     public Producto(int codigo, String descripcion, double pvp, int stock) {
@@ -112,6 +116,12 @@ public class Producto implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public int compareTo(Object t) {
+            Producto otro = (Producto) t;
+            return descripcion.compareTo(otro.getDescripcion());
     }
 
 }

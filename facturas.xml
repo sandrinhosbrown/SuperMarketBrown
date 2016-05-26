@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_80" class="java.beans.XMLDecoder">
+ <object class="modelo.ListaFacturas" id="ListaFacturas0">
+  <void property="lista">
+   <void method="add">
+    <object class="modelo.Factura" id="Factura0">
+     <void property="cantidad">
+      <int>1</int>
+     </void>
+     <void property="cliente">
+      <void property="apellidos">
+       <string>brown</string>
+      </void>
+      <void property="direccion">
+       <string>av roma</string>
+      </void>
+      <void property="nif">
+       <string>45963568X</string>
+      </void>
+      <void property="nombre">
+       <string>sandrinhos</string>
+      </void>
+      <void property="poblacion">
+       <string>Castelldefels</string>
+      </void>
+     </void>
+     <void property="fecha">
+      <object class="java.util.Date">
+       <long>1464249416143</long>
+      </object>
+     </void>
+     <void property="numero">
+      <int>10</int>
+     </void>
+     <void property="producto">
+      <void property="codigo">
+       <int>52</int>
+      </void>
+      <void property="descripcion">
+       <string>Piña colada</string>
+      </void>
+      <void property="pvp">
+       <double>10.0</double>
+      </void>
+      <void property="stock">
+       <int>5</int>
+      </void>
+     </void>
+    </object>
+   </void>
+  </void>
+ </object>
+</java>

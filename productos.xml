@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_74" class="java.beans.XMLDecoder">
+<java version="1.7.0_80" class="java.beans.XMLDecoder">
  <object class="modelo.ListaProductos" id="ListaProductos0">
   <void property="lista">
    <void method="add">
@@ -44,6 +44,22 @@
      </void>
      <void property="pvp">
       <double>1.15</double>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Producto">
+     <void property="codigo">
+      <int>52</int>
+     </void>
+     <void property="descripcion">
+      <string>Piña colada</string>
+     </void>
+     <void property="pvp">
+      <double>10.0</double>
+     </void>
+     <void property="stock">
+      <int>4</int>
      </void>
     </object>
    </void>

@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.util.Collections;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
@@ -12,7 +13,7 @@ import modelo.Factura;
 import modelo.ListaClientes;
 import modelo.ListaProductos;
 import modelo.Producto;
-import ocutilidades.EntradaDatos;
+import utilidades.EntradaDatos;
 import supermercadomar.SupermercadoMar;
 import static supermercadomar.SupermercadoMar.clientes;
 import static supermercadomar.SupermercadoMar.facturas;
@@ -62,8 +63,18 @@ public class DatosFactura extends javax.swing.JDialog {
     public DatosFactura(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         factura = new Factura();
-        todosLosClientes = clientes;
-        losProductos = productos;
+        todosLosClientes = clientes.copiaClientes();
+        Cliente auxiliar = new Cliente();
+        //Añadimos cliente auxiliar para el ComboBox
+        auxiliar.setApellidos("-- Escoge un cliente --");
+        todosLosClientes.altaCliente(auxiliar);
+        //Ordenamos la lista
+        Collections.sort(todosLosClientes.getLista()); //hay que implementar Comparable
+        losProductos = productos.productoEnStock();
+        Producto escoge = new Producto();
+        escoge.setDescripcion("-- Escoge un producto --");
+        losProductos.altaProducto(escoge);
+        Collections.sort(losProductos.getLista());
         initComponents();
         // new Date devuelve la fecha actual
         jXDatePicker1.setDate(new Date());

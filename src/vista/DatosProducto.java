@@ -7,7 +7,7 @@ package vista;
 
 import javax.swing.JOptionPane;
 import modelo.Producto;
-import ocutilidades.EntradaDatos;
+import utilidades.EntradaDatos;
 import supermercadomar.SupermercadoMar;
 import static supermercadomar.SupermercadoMar.ficheroProductos;
 import static supermercadomar.SupermercadoMar.productos;

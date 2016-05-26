@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<java version="1.8.0_74" class="java.beans.XMLDecoder">
+<java version="1.7.0_80" class="java.beans.XMLDecoder">
  <object class="modelo.ListaClientes" id="ListaClientes0">
   <void property="lista">
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
-      <string>Martínez Soria</string>
+      <string>-- Escoge un cliente --</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>-- Escoge un cliente --</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>Barcelona Sevilla</string>
      </void>
      <void property="direccion">
-      <string>c/ Almacen, nº 2</string>
+      <string>c/ La copa, nº 3</string>
      </void>
      <void property="nif">
-      <string>12345678A</string>
+      <string>87635426T</string>
      </void>
      <void property="nombre">
-      <string>Alberto</string>
+      <string>Marta</string>
      </void>
      <void property="poblacion">
-      <string>El Prat del Llobregat</string>
+      <string>Gavá</string>
      </void>
     </object>
    </void>
@@ -43,19 +57,57 @@
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
-      <string>Barcelona Sevilla</string>
+      <string>Martínez Soria</string>
      </void>
      <void property="direccion">
-      <string>c/ La copa, nº 3</string>
+      <string>c/ Almacen, nº 2</string>
      </void>
      <void property="nif">
-      <string>87635426T</string>
+      <string>12345678A</string>
      </void>
      <void property="nombre">
-      <string>Marta</string>
+      <string>Alberto</string>
      </void>
      <void property="poblacion">
-      <string>Gavá</string>
+      <string>El Prat del Llobregat</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>brown</string>
+     </void>
+     <void property="direccion">
+      <string>av roma</string>
+     </void>
+     <void property="nif">
+      <string>45963568X</string>
+     </void>
+     <void property="nombre">
+      <string>sandrinhos</string>
+     </void>
+     <void property="poblacion">
+      <string>Castelldefels</string>
+     </void>
+    </object>
+   </void>
+   <void method="add">
+    <object class="modelo.Cliente">
+     <void property="apellidos">
+      <string>Port</string>
+     </void>
+     <void property="direccion">
+      <string>Calella, 52</string>
+     </void>
+     <void property="nif">
+      <string>454823658</string>
+     </void>
+     <void property="nombre">
+      <string>Miquel</string>
+     </void>
+     <void property="poblacion">
+      <string>Barcelona</string>
      </void>
     </object>
    </void>

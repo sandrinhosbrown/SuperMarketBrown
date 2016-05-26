@@ -12,7 +12,7 @@ import java.util.Objects;
  *
  * @author mfontana
  */
-public class Cliente implements Serializable {
+public class Cliente implements Serializable, Comparable { //añadimos Comparable e implementamos todos los metodos abstractos
 
     private String nif;
     private String nombre;
@@ -30,7 +30,11 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
+        if(apellidos.equals("-- Escoge un cliente --")){
+            return apellidos;
+        } else{
         return apellidos + ", " + nombre;
+        }
     }
 
     public Cliente(String nif, String nombre, String apellidos, String direccion, String poblacion) {
@@ -131,6 +135,13 @@ public class Cliente implements Serializable {
 
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
+    }
+
+    @Override
+    public int compareTo(Object t) {
+        Cliente otro = (Cliente) t;
+        //queremos que ordene por apellido
+        return apellidos.compareTo(otro.getApellidos());
     }
 
 }

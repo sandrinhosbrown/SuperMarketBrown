@@ -22,6 +22,17 @@ public class ListaProductos implements Serializable {
         lista = ObservableCollections.observableList(new ArrayList<Producto>());
     }
     
+    //Creamos una lista de productos que tiene stock
+    public ListaProductos productoEnStock(){
+        ListaProductos productosConStock = new ListaProductos();
+        for (Producto p: lista){
+            if(p.getStock()>0){
+                productosConStock.altaProducto(p);
+            }
+        }
+        return productosConStock;
+    }
+    
     public boolean existeProducto(Producto p) {
         return lista.contains(p);
     }

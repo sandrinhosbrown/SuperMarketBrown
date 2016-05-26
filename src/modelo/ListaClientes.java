@@ -22,6 +22,24 @@ public class ListaClientes implements Serializable {
         lista = ObservableCollections.observableList(new ArrayList<Cliente>());
     }
     
+    //Metodo para eliminar un cliente de la lista
+    public ListaClientes eliminarClientes(){
+        for (Cliente c : lista){
+            
+        }
+        return copia;
+    }
+    
+    
+    //Metodo que me devuelve una copia de la lista
+    public ListaClientes copiaClientes() {
+        ListaClientes copia = new ListaClientes();
+        for (Cliente c : lista){
+            copia.altaCliente(c);
+        }
+        return copia;
+    }
+    
     // contains utiliza equals, debemos sobreescribirlo en Cliente
     public boolean existeCliente(Cliente c) {
         return lista.contains(c);

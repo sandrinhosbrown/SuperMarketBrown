@@ -6,7 +6,7 @@ package supermercadomar;
 import modelo.ListaClientes;
 import modelo.ListaFacturas;
 import modelo.ListaProductos;
-import ocutilidades.Fichero;
+import utilidades.Fichero;
 import vista.MenuPrincipal;
 
 /**
