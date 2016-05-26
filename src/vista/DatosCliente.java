@@ -30,10 +30,23 @@ public class DatosCliente extends javax.swing.JDialog {
     /**
      * Creates new form DatosCliente
      */
-    public DatosCliente(java.awt.Frame parent, boolean modal) {
+    
+    private String modo;
+    public boolean cancelar;
+    
+    //Cliente x será cliente seleccionado en caso de modificar, vacío en caso de alta
+    //Modo: "Alta" o "Modificar" para saber qué operacion quiere hacer el usuario
+    public DatosCliente(java.awt.Frame parent, boolean modal, Cliente c, String modo) {
         super(parent, modal);
-        cliente = new Cliente();
+        cliente = c;
+        this.modo= modo;
+        //inicializamos cancelar en true
+        this.cancelar = true;
         initComponents();
+        //No permitimos que puedan modificar el nif
+        if(modo.equalsIgnoreCase("Modificar")){
+            jTextField1.setEditable(false);
+        }
     }
 
     /**
@@ -168,6 +181,7 @@ public class DatosCliente extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cancelar = false;
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -184,17 +198,29 @@ public class DatosCliente extends javax.swing.JDialog {
         } else if (cliente.getNif().length() != 9) {
             JOptionPane.showMessageDialog(this, "NIF de longitud incorrecta", 
                     "ERROR: NIF incorrecto", JOptionPane.ERROR_MESSAGE);
-        } else if (clientes.existeCliente(cliente)) {
-            JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese NIF", 
-                    "ERROR: Cliente duplicado", JOptionPane.ERROR_MESSAGE);
+        } else  {
+            if (modo.equalsIgnoreCase("Alta")){
+                if (clientes.existeCliente(cliente)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese NIF", 
+                        "ERROR: Cliente duplicado", JOptionPane.ERROR_MESSAGE);
         } else {
-            clientes.altaCliente(cliente);
+                clientes.altaCliente(cliente);
+                }
+            }
             ficheroClientes.grabar(clientes);
-            JOptionPane.showMessageDialog(this, "Cliente dado de alta.");
+            String msg;
+            if(modo.equalsIgnoreCase("Alta")){
+                msg = "Cliente dado de alta.";
+            } else {
+                msg = "Cliente modificado.";
+            }
+            JOptionPane.showMessageDialog(this, msg);
+            //si le han dado a aceptar (cancelar es false)
+            cancelar = false;
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

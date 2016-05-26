@@ -5,7 +5,10 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import modelo.Cliente;
 import modelo.ListaClientes;
+import supermercadomar.SupermercadoMar;
 import static supermercadomar.SupermercadoMar.clientes;
 
 /**
@@ -27,10 +30,21 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         this.todosLosClientes = todosLosClientes;
     }
 
+    private Cliente clienteSeleccionado;
+
+    public Cliente getClienteSeleccionado() {
+        return clienteSeleccionado;
+    }
+
+    public void setClienteSeleccionado(Cliente clienteSeleccionado) {
+        this.clienteSeleccionado = clienteSeleccionado;
+    }
+
     
     public GestionClientes() {
+        //Inicializamos todosLosClientes
         todosLosClientes = clientes;
-        
+        clienteSeleccionado = new Cliente();
         initComponents();
     }
 
@@ -76,10 +90,17 @@ public class GestionClientes extends javax.swing.JInternalFrame {
         columnBinding.setColumnClass(String.class);
         columnBinding.setEditable(false);
         bindingGroup.addBinding(jTableBinding);
-        jTableBinding.bind();
+        jTableBinding.bind();org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${clienteSeleccionado}"), jTable1, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Modificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Eliminar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -121,8 +142,47 @@ public class GestionClientes extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        clientes.copiaClientes().
+        //Nos aseguramos que hayan seleccionado algun cliente
+        if(jTable1.getSelectedRowCount() == 0){ //Si la fila seleccionada es 0 (no seleccionado)
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente", 
+                    " Cliente no seleccionado", JOptionPane.ERROR_MESSAGE);
+        } else{
+            //Le pedimos confirmacion para borrar
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres borrar el cliente seleccionado?",
+                    "Confirmación", JOptionPane.YES_NO_OPTION);
+            if(respuesta == JOptionPane.YES_OPTION){
+                //Si ha respondido que si eliminamos el cliente y grabamos
+                todosLosClientes.bajaCliente(clienteSeleccionado);
+                SupermercadoMar.ficheroClientes.grabar(clientes);
+                JOptionPane.showMessageDialog(this, "Cliente borrado!");
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // Me aseguro que hayan seleccionado un cliente
+         if(jTable1.getSelectedRowCount() == 0){ //Si la fila seleccionada es 0 (no seleccionado)
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente", 
+                    " Cliente no seleccionado", JOptionPane.ERROR_MESSAGE);
+        } else{
+             //Creamos una copia del clienteSeleccionado por si finalmente cancelan
+             //Vamos al Cliente.java
+             Cliente copia = (Cliente) clienteSeleccionado.clone();
+             DatosCliente dc = new DatosCliente(null, true, clienteSeleccionado, "Modificar");
+             dc.setLocationRelativeTo(null);
+             dc.setVisible(true);
+             //si se ha pulsado cancelar restauro los datos de la copia en el clienteSeleccionado
+             if(dc.cancelar){
+                 clienteSeleccionado.setNif(copia.getNif());
+                 clienteSeleccionado.setNombre(copia.getNombre());
+                 clienteSeleccionado.setApellidos(copia.getApellidos());
+                 clienteSeleccionado.setDireccion(copia.getDireccion());
+                 clienteSeleccionado.setPoblacion(copia.getPoblacion());
+                 
+             }
+             
+         }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

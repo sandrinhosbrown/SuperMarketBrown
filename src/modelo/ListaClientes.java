@@ -23,11 +23,8 @@ public class ListaClientes implements Serializable {
     }
     
     //Metodo para eliminar un cliente de la lista
-    public ListaClientes eliminarClientes(){
-        for (Cliente c : lista){
-            
-        }
-        return copia;
+    public void bajaCliente(Cliente c){
+        lista.remove(c);
     }
     
     

@@ -7,13 +7,15 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author mfontana
  */
-public class Cliente implements Serializable, Comparable { //añadimos Comparable e implementamos todos los metodos abstractos
-
+public class Cliente implements Serializable, Comparable, Cloneable { //añadimos Comparable e implementamos 
+                                                                      //todos los metodos abstractos
     private String nif;
     private String nombre;
     private String apellidos;
@@ -136,7 +138,27 @@ public class Cliente implements Serializable, Comparable { //añadimos Comparabl
     public void removePropertyChangeListener(PropertyChangeListener listener) {
         propertyChangeSupport.removePropertyChangeListener(listener);
     }
+//Insert code> Overrride method> clone()
+    @Override
+    public Object clone() { //no lanzamos la excepcion
+        try{
+            return super.clone();
+        } catch(CloneNotSupportedException ex){
+            System.out.println("Error, no se ha podido clonar el objeto");
+//            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex); //Lo guardamos en un fichero log el error
+            return null;
+        }
+//        Cliente copia = new Cliente();
+//        copia.setNif(nif);
+//        copia.setNombre(nombre);
+//        copia.setApellidos(apellidos);
+//        copia.setDireccion(direccion);
+//        copia.setPoblacion(poblacion);
+//        return copia;
+    }
 
+    
+    
     @Override
     public int compareTo(Object t) {
         Cliente otro = (Cliente) t;

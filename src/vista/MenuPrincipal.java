@@ -5,6 +5,8 @@
  */
 package vista;
 
+import modelo.Cliente;
+
 /**
  *
  * @author mfontana
@@ -36,6 +38,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
 
@@ -74,6 +77,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItem2);
 
+        jMenuItem5.setText("Gestión de productos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem5);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Facturas");
@@ -106,7 +117,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        DatosCliente altaCliente = new DatosCliente(this, true);
+        DatosCliente altaCliente = new DatosCliente(this, true, new Cliente(), "Alta"); //agregamos los nuevos param new CLiente() y "Alta"
         altaCliente.setLocationRelativeTo(null);
         altaCliente.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -125,11 +136,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         GestionClientes gc = new GestionClientes();
+        //Le damos al internalFrame el tamaño que tiene la caja JDesktopPane
+        gc.setSize(jDesktopPane1.getWidth(), jDesktopPane1.getHeight());
         //Lo añadimos al desktop Pane
         jDesktopPane1.add(gc);
         //lo hacemos visible
         gc.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        GestionProductos gp = new GestionProductos();
+        jDesktopPane1.add(gp);
+        gp.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -142,5 +161,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,20 +5,6 @@
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
-      <string>-- Escoge un cliente --</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="modelo.Cliente">
-     <void property="apellidos">
-      <string>-- Escoge un cliente --</string>
-     </void>
-    </object>
-   </void>
-   <void method="add">
-    <object class="modelo.Cliente">
-     <void property="apellidos">
       <string>Barcelona Sevilla</string>
      </void>
      <void property="direccion">
@@ -38,7 +24,7 @@
    <void method="add">
     <object class="modelo.Cliente">
      <void property="apellidos">
-      <string>Marquez Fernandez</string>
+      <string>Luiz Nazario</string>
      </void>
      <void property="direccion">
       <string>c/ Atomo, nº 2</string>
@@ -47,7 +33,7 @@
       <string>88888888P</string>
      </void>
      <void property="nombre">
-      <string>Manuel</string>
+      <string>Ronaldo</string>
      </void>
      <void property="poblacion">
       <string>Castelldefels</string>
