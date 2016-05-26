@@ -6,6 +6,7 @@
 package vista;
 
 import modelo.Cliente;
+import modelo.Producto;
 
 /**
  *
@@ -123,7 +124,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        DatosProducto altaProducto = new DatosProducto(this, true);
+        DatosProducto altaProducto = new DatosProducto(this, true, new Producto(), "Alta");
         altaProducto.setLocationRelativeTo(null);
         altaProducto.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -146,6 +147,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         GestionProductos gp = new GestionProductos();
+        //Le damos al internalFrame el tamaño que tiene la caja JDesktopPane
+        gp.setSize(jDesktopPane1.getWidth(), jDesktopPane1.getHeight());
         jDesktopPane1.add(gp);
         gp.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed

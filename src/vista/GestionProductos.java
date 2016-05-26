@@ -5,6 +5,11 @@
  */
 package vista;
 
+import javax.swing.JOptionPane;
+import modelo.ListaProductos;
+import modelo.Producto;
+import static supermercadomar.SupermercadoMar.productos;
+
 /**
  *
  * @author usu21
@@ -14,7 +19,30 @@ public class GestionProductos extends javax.swing.JInternalFrame {
     /**
      * Creates new form GestionProductos
      */
+    
+    private ListaProductos todosLosProductos;
+
+    public ListaProductos getTodosLosProductos() {
+        return todosLosProductos;
+    }
+
+    public void setTodosLosProductos(ListaProductos todosLosProductos) {
+        this.todosLosProductos = todosLosProductos;
+    }
+
+        private Producto productoSeleccionado;
+
+    public Producto getProductoSeleccionado() {
+        return productoSeleccionado;
+    }
+
+    public void setProductoSeleccionado(Producto productoSeleccionado) {
+        this.productoSeleccionado = productoSeleccionado;
+    }
+
     public GestionProductos() {
+        todosLosProductos = productos;
+        productoSeleccionado = new Producto();
         initComponents();
     }
 
@@ -26,11 +54,34 @@ public class GestionProductos extends javax.swing.JInternalFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        setClosable(true);
+        setMaximizable(true);
+        setTitle("Gestión de Productos");
+
+        org.jdesktop.beansbinding.ELProperty eLProperty = org.jdesktop.beansbinding.ELProperty.create("${todosLosProductos.lista}");
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, eLProperty, jTable1);
+        org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${codigo}"));
+        columnBinding.setColumnName("Codigo");
+        columnBinding.setColumnClass(Integer.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${descripcion}"));
+        columnBinding.setColumnName("Descripcion");
+        columnBinding.setColumnClass(String.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${pvp}"));
+        columnBinding.setColumnName("Pvp");
+        columnBinding.setColumnClass(Double.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${stock}"));
+        columnBinding.setColumnName("Stock");
+        columnBinding.setColumnClass(Integer.class);
+        bindingGroup.addBinding(jTableBinding);
+        jTableBinding.bind();org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, this, org.jdesktop.beansbinding.ELProperty.create("${productoSeleccionado}"), jTable1, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
 
         jScrollPane1.setViewportView(jTable1);
 
@@ -75,29 +126,27 @@ public class GestionProductos extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Me aseguro que hayan seleccionado un cliente
+        // Me aseguro que hayan seleccionado un producto
         if(jTable1.getSelectedRowCount() == 0){ //Si la fila seleccionada es 0 (no seleccionado)
             JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente",
                 " Cliente no seleccionado", JOptionPane.ERROR_MESSAGE);
         } else{
-            //Creamos una copia del clienteSeleccionado por si finalmente cancelan
-            //Vamos al Cliente.java
-            Cliente copia = (Cliente) clienteSeleccionado.clone();
-            DatosCliente dc = new DatosCliente(null, true, clienteSeleccionado, "Modificar");
-            dc.setLocationRelativeTo(null);
-            dc.setVisible(true);
+            Producto copia = (Producto) productoSeleccionado.clone();
+            DatosProducto dp = new DatosProducto(null, true, productoSeleccionado, "Modificar");
+            dp.setLocationRelativeTo(null);
+            dp.setVisible(true);
             //si se ha pulsado cancelar restauro los datos de la copia en el clienteSeleccionado
-            if(dc.cancelar){
-                clienteSeleccionado.setNif(copia.getNif());
-                clienteSeleccionado.setNombre(copia.getNombre());
-                clienteSeleccionado.setApellidos(copia.getApellidos());
-                clienteSeleccionado.setDireccion(copia.getDireccion());
-                clienteSeleccionado.setPoblacion(copia.getPoblacion());
-
+            if(dp.cancelar){
+                productoSeleccionado.setCodigo(copia.getCodigo());
+                productoSeleccionado.setDescripcion(copia.getDescripcion());
+                productoSeleccionado.setPvp(copia.getPvp());
+                productoSeleccionado.setStock(copia.getStock());
             }
 
         }
@@ -106,17 +155,17 @@ public class GestionProductos extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //Nos aseguramos que hayan seleccionado algun cliente
         if(jTable1.getSelectedRowCount() == 0){ //Si la fila seleccionada es 0 (no seleccionado)
-            JOptionPane.showMessageDialog(this, "Debes seleccionar un cliente",
-                " Cliente no seleccionado", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Debes seleccionar un producto",
+                " Producto no seleccionado", JOptionPane.ERROR_MESSAGE);
         } else{
             //Le pedimos confirmacion para borrar
-            int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres borrar el cliente seleccionado?",
+            int respuesta = JOptionPane.showConfirmDialog(this, "¿Estas seguro que quieres borrar el producto seleccionado?",
                 "Confirmación", JOptionPane.YES_NO_OPTION);
             if(respuesta == JOptionPane.YES_OPTION){
-                //Si ha respondido que si eliminamos el cliente y grabamos
-                todosLosClientes.bajaCliente(clienteSeleccionado);
-                SupermercadoMar.ficheroClientes.grabar(clientes);
-                JOptionPane.showMessageDialog(this, "Cliente borrado!");
+                //Si ha respondido que si eliminamos el producto y grabamos
+                todosLosProductos.bajaProducto(productoSeleccionado);
+                supermercadomar.SupermercadoMar.ficheroProductos.grabar(productos);
+                JOptionPane.showMessageDialog(this, "Producto borrado!");
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -127,5 +176,6 @@ public class GestionProductos extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

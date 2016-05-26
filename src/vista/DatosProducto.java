@@ -27,14 +27,24 @@ public class DatosProducto extends javax.swing.JDialog {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-
+    
+    private String modo;
+    public boolean cancelar;
     /**
      * Creates new form DatosProducto
      */
-    public DatosProducto(java.awt.Frame parent, boolean modal) {
+    public DatosProducto(java.awt.Frame parent, boolean modal, Producto p, String modo) {
         super(parent, modal);
-        producto = new Producto();
+        producto = p;
+        this.modo = modo;
+        //inicializamos cancelar en true
+        this.cancelar = true;
+//        producto = new Producto();
         initComponents();
+        //No permitimos que puedan modificar el nif
+        if(modo.equalsIgnoreCase("Modificar")){
+            jTextField1.setEditable(false);
+        }
     }
 
     /**
@@ -166,6 +176,7 @@ public class DatosProducto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        cancelar = false;
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -180,14 +191,30 @@ public class DatosProducto extends javax.swing.JDialog {
             } else if (producto.getPvp() < 0 || producto.getStock() < 0) {
                 JOptionPane.showMessageDialog(this, "No puede haber stock o precio negativo", "ERROR: Cantidad negativa", JOptionPane.ERROR_MESSAGE);
             } else {
-                productos.altaProducto(producto);
-                ficheroProductos.grabar(productos);
-                JOptionPane.showMessageDialog(this, "Producto dado de alta");
-                dispose();
-            }
+                
+                if(modo.equalsIgnoreCase("Alta")){
+                 if (productos.existeProducto(producto)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un producto con ese Codigo", 
+                        "ERROR: Codigo duplicado", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "El código debe ser un nº entero", "ERROR: Código incorrecto", JOptionPane.ERROR_MESSAGE);
-        }
+                     productos.altaProducto(producto);
+                }
+                ficheroProductos.grabar(productos);
+               String msg;
+            if(modo.equalsIgnoreCase("Alta")){
+                msg = "Cliente dado de alta.";
+            } else {
+                msg = "Cliente modificado.";
+            }
+            JOptionPane.showMessageDialog(this, msg);
+            //si le han dado a aceptar (cancelar es false)
+            cancelar = false;
+            dispose();
+            }
+        } 
+//            else {
+//            JOptionPane.showMessageDialog(this, "El código debe ser un nº entero", "ERROR: Código incorrecto", JOptionPane.ERROR_MESSAGE);
+        }//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

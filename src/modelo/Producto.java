@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author mfontana
  */
-public class Producto implements Serializable, Comparable {
+public class Producto implements Serializable, Comparable, Cloneable {
 
     private int codigo;
     private String descripcion;
@@ -124,4 +124,19 @@ public class Producto implements Serializable, Comparable {
             return descripcion.compareTo(otro.getDescripcion());
     }
 
+    @Override
+    public Object clone() {
+        try{
+            return super.clone(); 
+        } catch(CloneNotSupportedException ex){
+            System.out.println("Error, no se ha podido clonar el objeto");
+//            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex); //Lo guardamos en un fichero log el error
+            return null;
+        }
+        
+        
+    }
+
+    
+    
 }

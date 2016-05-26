@@ -24,13 +24,13 @@
       <int>2</int>
      </void>
      <void property="descripcion">
-      <string>Galletas de chocolate</string>
+      <string>Galletas de Maria</string>
      </void>
      <void property="pvp">
-      <double>0.75</double>
+      <double>5.75</double>
      </void>
      <void property="stock">
-      <int>3</int>
+      <int>6</int>
      </void>
     </object>
    </void>
@@ -50,16 +50,16 @@
    <void method="add">
     <object class="modelo.Producto">
      <void property="codigo">
-      <int>52</int>
+      <int>12</int>
      </void>
      <void property="descripcion">
-      <string>Piña colada</string>
+      <string>Jamon Serrano</string>
      </void>
      <void property="pvp">
-      <double>10.0</double>
+      <double>50.0</double>
      </void>
      <void property="stock">
-      <int>4</int>
+      <int>20</int>
      </void>
     </object>
    </void>

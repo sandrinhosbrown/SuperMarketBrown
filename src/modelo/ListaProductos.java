@@ -41,6 +41,11 @@ public class ListaProductos implements Serializable {
         lista.add(p);
     }
     
+    //Metodo para eliminar un producto de la lista
+    public void bajaProducto(Producto p){
+        lista.remove(p);
+    }
+    
     public static final String PROP_LISTA = "lista";
 
     public ObservableList<Producto> getLista() {
