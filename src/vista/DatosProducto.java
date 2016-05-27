@@ -181,40 +181,50 @@ public class DatosProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextField1.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Debes indicar código de producto", "ERROR: Código incorrecto.", JOptionPane.ERROR_MESSAGE);
-        } else if (EntradaDatos.esEntero(jTextField1.getText())) {
-            if (productos.existeProducto(producto)) {
-                JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código", "ERROR: Código de producto duplicado.", JOptionPane.ERROR_MESSAGE);
-            } else if (producto.getDescripcion().equals("")) {
-                JOptionPane.showMessageDialog(this, "No se puede dejar la descripción en blanco", "ERROR: Descripción incorrecta", JOptionPane.ERROR_MESSAGE);
-            } else if (producto.getPvp() < 0 || producto.getStock() < 0) {
-                JOptionPane.showMessageDialog(this, "No puede haber stock o precio negativo", "ERROR: Cantidad negativa", JOptionPane.ERROR_MESSAGE);
-            } else {
-                
+        boolean ok= comprobarCampos();
+        String msg="";
+        
+        if(ok) {
                 if(modo.equalsIgnoreCase("Alta")){
                  if (productos.existeProducto(producto)) {
                     JOptionPane.showMessageDialog(this, "Ya existe un producto con ese Codigo", 
                         "ERROR: Codigo duplicado", JOptionPane.ERROR_MESSAGE);
+                    ok=false;
         } else {
-                     productos.altaProducto(producto);
-                }
-                ficheroProductos.grabar(productos);
-               String msg;
-            if(modo.equalsIgnoreCase("Alta")){
-                msg = "Cliente dado de alta.";
+                productos.altaProducto(producto);
+                msg="Producto dado de alta.";
+            }
             } else {
                 msg = "Cliente modificado.";
             }
+            if(ok){
+            ficheroProductos.grabar(productos);
             JOptionPane.showMessageDialog(this, msg);
             //si le han dado a aceptar (cancelar es false)
             cancelar = false;
             dispose();
             }
         } 
-//            else {
-//            JOptionPane.showMessageDialog(this, "El código debe ser un nº entero", "ERROR: Código incorrecto", JOptionPane.ERROR_MESSAGE);
-        }//        }
+        }
+        private boolean comprobarCampos(){ 
+            if (jTextField1.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debes indicar código de producto", "ERROR: Código incorrecto.", JOptionPane.ERROR_MESSAGE);
+                return false; //devuelve false
+            } else if (EntradaDatos.esEntero(jTextField1.getText())) {
+                JOptionPane.showMessageDialog(this, "Debes poner un nº entero","ERROR: Nº con formato incorrecto", JOptionPane.ERROR_MESSAGE );
+                return false; //devuelve false
+            } else if (productos.existeProducto(producto)) {
+                JOptionPane.showMessageDialog(this, "Ya existe un producto con ese código", "ERROR: Código de producto duplicado.", JOptionPane.ERROR_MESSAGE);
+                return false; //devuelve false
+            } else if (producto.getDescripcion().equals("")) {
+                JOptionPane.showMessageDialog(this, "No se puede dejar la descripción en blanco", "ERROR: Descripción incorrecta", JOptionPane.ERROR_MESSAGE);
+                return false; //devuelve false    
+            } else if (producto.getPvp() < 0 || producto.getStock() < 0) {
+                JOptionPane.showMessageDialog(this, "No puede haber stock o precio negativo", "ERROR: Cantidad negativa", JOptionPane.ERROR_MESSAGE);
+                return false; //devuelve false
+            }
+        
+            return true;
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
