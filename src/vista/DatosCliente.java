@@ -5,6 +5,7 @@
  */
 package vista;
 
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import modelo.Cliente;
 import supermercadomar.SupermercadoMar;
@@ -186,40 +187,50 @@ public class DatosCliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        //Creamos una variable booleana para verificar que todo va bien y llamamos a comprobarCampos(9
+        boolean ok = comprobarCampos();
+        String msg="";
+            if (ok){
+                if (modo.equalsIgnoreCase("Alta")){
+                if (clientes.existeCliente(cliente)) {
+                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese NIF",
+                            "ERROR: Cliente duplicado", JOptionPane.ERROR_MESSAGE);
+                    ok=false;
+                } else {
+                    clientes.altaCliente(cliente);
+                    msg = "Cliente dado de alta.";
+                }
+            } else {
+                msg = "Cliente modificado.";
+            }
+            if (ok){
+            ficheroClientes.grabar(clientes);
+            JOptionPane.showMessageDialog(this, msg);
+            cancelar = false;//si le han dado a aceptar (cancelar es false)
+            dispose();
+            }
+            }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private boolean comprobarCampos() { //Metodo boolean
         // Comprobamos que los datos sean correctos
         if (cliente.getNif().equals("") || cliente.getNombre().equals("")
                 || cliente.getApellidos().equals("") || cliente.getDireccion().equals("")
                 || cliente.getPoblacion().equals("")) {
             JOptionPane.showMessageDialog(this, "No puede haber ningún campo en blanco",
                     "ERROR: Campos en blanco", JOptionPane.ERROR_MESSAGE);
+            return false; //devuelve false
         } else if (jComboBox1.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "Debes seleccionar una población",
                     "ERROR: Población incorrecta", JOptionPane.ERROR_MESSAGE);
+            return false;
         } else if (cliente.getNif().length() != 9) {
-            JOptionPane.showMessageDialog(this, "NIF de longitud incorrecta", 
+            JOptionPane.showMessageDialog(this, "NIF de longitud incorrecta",
                     "ERROR: NIF incorrecto", JOptionPane.ERROR_MESSAGE);
-        } else  {
-            if (modo.equalsIgnoreCase("Alta")){
-                if (clientes.existeCliente(cliente)) {
-                    JOptionPane.showMessageDialog(this, "Ya existe un cliente con ese NIF", 
-                        "ERROR: Cliente duplicado", JOptionPane.ERROR_MESSAGE);
-        } else {
-                clientes.altaCliente(cliente);
-                }
-            }
-            ficheroClientes.grabar(clientes);
-            String msg;
-            if(modo.equalsIgnoreCase("Alta")){
-                msg = "Cliente dado de alta.";
-            } else {
-                msg = "Cliente modificado.";
-            }
-            JOptionPane.showMessageDialog(this, msg);
-            //si le han dado a aceptar (cancelar es false)
-            cancelar = false;
-            dispose();
+            return false;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+        return true;
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
